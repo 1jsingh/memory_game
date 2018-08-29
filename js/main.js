@@ -33,7 +33,7 @@ let fruitList = ['apple','apple','watermelon','watermelon','cherries',
 						'cherries','strawberry','strawberry','banana','banana','raspberry','raspberry','pineapple','pineapple','orange','orange'];
 
 function setupCards() {
-
+	remainingStars = 3;
 	moveCount = 0;
 	numCorrectPairs = 0;
 	openCards = [];
@@ -63,16 +63,26 @@ let moveCount ;
 let numCorrectPairs;
 let openCards = [];
 let flush ;
+let remainingStars;
 const myDeck = document.querySelector(".deck");
 const moveDisplay = document.querySelector(".moveDisplay");
 const starBar = document.querySelector(".stars");
 const reloadButton = document.querySelector(".reload_btn");
+const starList = starBar.children;
+const displayTimer = document.querySelector(".timeDisplay");
+const alertBanner = document.querySelector(".alertBanner");
+let time = 0;
+let timer;
+
+function incrementTimer(){
+	time++;
+	displayTimer.innerHTML = `${time} sec`;
+}
 
 function resetCards(){
 	for (const mycard of openCards){
 		mycard.classList.remove("flip");
 	}
-	flush = true;
 }
 
 function getChildIndex(parent,child) {
@@ -100,38 +110,103 @@ function checkMatch() {
 }
 
 function alertWin(){
-	alert(`You won in ${moveCount/2} moves`);	
+	clearInterval(timer);
+	alertBanner.firstElementChild.innerHTML = `You won!<br>Star rating : ${remainingStars}<br>Time : ${time} sec<br>Moves : ${moveCount/2}`;
+	alertBanner.showModal();
 	flush = false;
 }
 
+function resetStars(){
+	for (const star of starList){
+		star.innerHTML = `<i class="fas fa-star"></i>`;
+	}
+}
+
+// initial setup of cards
 setupCards();
 
+// alertBanner.showModal();
+
+// event listener for click on cards
 myDeck.addEventListener('click',function respond(event){
 	if (event.target.nodeName === 'IMG' && flush === true){
 		const clickedCard = event.target.parentElement.parentElement;
+		
+		// flip the clicked card to reveal the image
 		clickedCard.classList.add("flip");
+		
+		// add clicked card to openCards list
 		addClickedcard(clickedCard);
+
+		// starts the timer when the first card is clicked
+		if (moveCount === 1){
+			timer = setInterval(incrementTimer,1000);
+		}
+
+		// checks if the cards are matching
 		if (moveCount%2 === 0 && openCards.length > 0){
 			moveDisplay.textContent = `${moveCount/2} Moves`;
-			const newStar = document.createElement('li');
-			newStar.innerHTML = `<i class="fas fa-star"></i>`;
-			starBar.appendChild(newStar);
 			flush = false;
 			setTimeout(checkMatch,1000);}
 		
+		// decreases the star rating after a certain number of moves
+		if (moveCount === 24){
+			remainingStars--;
+			starList[0].innerHTML = `<i class="far fa-star"></i>`;
+		}
+
+		// decreases the star rating after a certain number of moves
+		if (moveCount === 32){
+			remainingStars--;
+			starList[1].innerHTML = `<i class="far fa-star"></i>`;
+		}
+
+		// decreases the star rating after a certain number of moves
+		if (moveCount === 40){
+			remainingStars--;
+			starList[2].innerHTML = `<i class="far fa-star"></i>`;
+		}
+
+		// gives a win alert when all cards are opened
 		if (openCards.length === 16){
 			setTimeout(alertWin,1200);	
 		}
 	}
 });
 
-reloadButton.addEventListener('click',function respond(){
-	flush = false;
+function reload(){
+	// stop and reset the timer
+	clearInterval(timer);
+	time = 0; 
+	displayTimer.innerHTML = `0 sec`;
+
+	// flip back the cards
 	resetCards();
+
+	// shuffle the cards
 	setTimeout(setupCards,500);
-	starBar.innerHTML=``;
+
+	// reset the move counter
 	moveDisplay.textContent = `0 Moves`;
+
+	// reset stars
+	resetStars();
+}
+
+// event listener for click on the reload button 
+reloadButton.addEventListener('click',function respond(){
+	reload();
 });
 
+const playAgain = document.querySelector(".playAgain");
+const closeBanner = document.querySelector(".closeBanner");
 
+playAgain.addEventListener('click',function respond(){
+	alertBanner.close();
+	reload();
+});
+
+closeBanner.addEventListener('click',function respond(){
+	alertBanner.close();
+});
 

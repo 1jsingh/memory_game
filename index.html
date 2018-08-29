@@ -16,6 +16,7 @@
 </head>
 
 <body>
+	<!-- main body container -->
 	<div class="container">
 		<header>
 			<h1 class="heading">Memory Game</h1>
@@ -23,7 +24,9 @@
 
 		<section class="score_panel">
 			<ul class="stars">
-		
+				<li><i class="fas fa-star"></i></li>
+				<li><i class="fas fa-star"></i></li>
+				<li><i class="fas fa-star"></i></li>
 			</ul>
 
 			<div class="moveDisplay">0 Moves</div> 
@@ -65,8 +68,21 @@
 			
 			<div class="card"></div>
 	 	</div>
-		
+
+		<div class="startBar">
+			Timer : <span class="timeDisplay">0 sec</span>
+		</div>
 	</div>
+	
+	<!-- alert banner after game completion -->
+	<dialog class="alertBanner">
+		<p class="message"></p>
+		<div class="options">
+			<button class="playAgain">Play again!</button>
+			<button class="closeBanner">Close</button>
+		</div>	
+	</dialog>
+
 	<script src="js/main.js"></script>
 </body>
 </html>
