@@ -1,0 +1,150 @@
+/*
+ *
+ * Basic syle tags
+ *
+ */
+
+body,html {
+	margin: 0;
+	padding: 0;
+	width: 100%;
+	height: 100%;
+}
+
+body {
+	font-family: 'Coda', cursive;
+	font-size: 16px;
+	color: #424242;
+	background-image: url("../images/geometry2.png");
+}
+
+.container{
+	display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+	width:800px;
+	margin-left:auto;
+	margin-right:auto;
+}
+
+/*
+ *
+ * Header
+ *
+ */
+
+.heading {
+	font-size: 32px;
+	font-weight: 100;
+	text-align: center;
+}
+
+/*
+ *
+ * score_panel
+ *
+ */
+
+.score_panel {
+	font-size: 16px;
+	width:400px;
+	margin-bottom: 10px;
+}
+
+.stars{
+	display: inline-block;
+	margin:0;
+	padding:0;
+}
+
+.stars li{
+	display: inline-block;
+}
+
+.moveDisplay{
+	vertical-align: middle;
+	display: inline-block;
+}
+
+.reload_btn{
+	display: inline-block;
+	float:right;
+}
+
+.reload_btn:hover{
+	cursor: pointer;
+	color: orange;
+}
+
+/*
+ *
+ * deck
+ *
+ */
+
+
+.deck{
+	width: 660px;
+    min-height: 680px;
+    background: linear-gradient(160deg, #02ccba 0%, #aa7ecd 100%);
+    padding: 32px;
+    border-radius: 10px;
+    box-shadow: 12px 15px 20px 0 rgba(46, 61, 73, 0.5);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 0 3em;
+}
+/*
+ *
+ * Cards
+ *
+ */
+
+.card {
+	cursor: pointer;
+	transform-style: preserve-3d;
+	transition: all 1s ease-in-out;
+	height: 125px;
+    width: 125px;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 5px 2px 20px 0 rgba(46, 61, 73, 0.5);
+    margin:10px;
+}
+
+.card.flip{
+  	/*display: none;*/
+	transform: rotateY(180deg);
+}
+
+/*.card:hover {
+  transform: rotateY(180deg);
+}*/
+
+.card .side {
+	background: #eaeaed;
+	color: #0087cc;
+	line-height: 150px;
+	text-align: center;
+	backface-visibility: hidden;
+	border-radius: 6px;
+	height: 100%;
+	overflow: hidden;
+	position: absolute;
+	width: 100%;
+}
+
+.card .back {	
+	transform: rotateY(180deg);
+	position: absolute;
+}
+
+.fruit_image{
+	height: 80%;
+	width: 80%;
+	padding:10%;
+	background-color: white;
+}
