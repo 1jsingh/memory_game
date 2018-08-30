@@ -23,7 +23,7 @@ body {
     justify-content: center;
     align-items: center;
     flex-direction: column;
-	width:800px;
+	width:560px;
 	margin-left:auto;
 	margin-right:auto;
 }
@@ -48,7 +48,7 @@ body {
 
 .score_panel {
 	font-size: 16px;
-	width:400px;
+	width:60%;
 	margin-bottom: 10px;
 }
 
@@ -86,10 +86,10 @@ body {
 
 
 .deck{
-	width: 65%;
-    min-height: 60%;
+	width: 90%;
+    height: 504px;
     background: linear-gradient(160deg, #02ccba 0%, #aa7ecd 100%);
-    padding: 22px;
+    padding: 5%;
     border-radius: 10px;
     box-shadow: 12px 15px 20px 0 rgba(46, 61, 73, 0.5);
     display: flex;
@@ -108,8 +108,8 @@ body {
 	cursor: pointer;
 	transform-style: preserve-3d;
 	transition: all 1s ease-in-out;
-	height: 100px;
     width: 100px;
+    height: 100px;
     justify-content: center;
     align-items: center;
     box-shadow: 5px 2px 20px 0 rgba(46, 61, 73, 0.5);
@@ -148,6 +148,7 @@ body {
 	width: 80%;
 	padding:10%;
 	background-color: white;
+	vertical-align: top;
 }
 
 /*
@@ -173,7 +174,7 @@ body {
 	box-shadow: 2px 2px 2px rgba(0,0,0,0.2);
 	height:200px;
 	width:300px;
-	font: Arial;
+	font-family : arial,cursive;
 	/* change position to fixed if you want to prevent the dialog from scrolling away, and center it */
 	position:fixed;
 	top:50%;
@@ -219,4 +220,57 @@ button {
 button:hover {
     background-color: grey; /* Green */
     color: white;
+}
+
+@media screen and (max-width:610px) {
+	.container{width: 450px;}
+	.deck{height: 405px;}
+	.card{
+		height: 80px;
+		width: 80px;
+		margin:5px;
+	}
+	.score_panel{width:65%;}
+}
+
+@media screen and (max-width:460px) {
+	.container{width: 400px;}
+	.deck{height: 360px;}
+	.card{
+		height: 70px;
+		width: 70px;
+		margin:5px;
+	}
+	.score_panel{width:70%;}
+}
+
+@media screen and (max-width:410px) {
+	.container{width: 350px;}
+	.deck{height: 315px;}
+	.card{
+		height: 60px;
+		width: 60px;
+		margin:5px;
+	}
+	.score_panel{width:80%;}
+}
+
+@media screen and (max-width:360px) {
+	.container{width: 300px;}
+	.deck{height: 270px;}
+	.card{
+		height: 60px;
+		width: 60px;
+		margin:2px;
+	}
+}
+
+@media screen and (max-width:320px) {
+	.container{width: 300px;}
+	.deck{height: 270px;}
+	.card{
+		height: 50px;
+		width: 50px;
+		margin:5px;
+	}
 }
